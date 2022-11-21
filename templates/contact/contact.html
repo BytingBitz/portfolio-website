@@ -1,0 +1,99 @@
+{% extends 'partials/base.html' %}
+
+{% block section %}
+
+    <!-- Start Title -->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2 class="text-dark fw-light lh-base mt-5">Let's Keep In <span class="title fw-medium">Touch</span></h2>
+                    <p class="fs-16 text-muted mb-0">Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
+                        consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean
+                        sollicitudin, adipisicing elit sed lorem quis bibendum auctor.</p>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- End Title -->
+
+    <section class="sm-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mt-5">
+                    <div>
+                        <h5 class="text-muted fw-medium fs-14">Email Address</h5>
+                        <p class="text-dark fs-16">support.yourdomain@email.com</p>
+                    </div>
+                    <div class="mt-4">
+                        <h5 class="text-muted fw-medium fs-14">Telephone</h5>
+                        <p class="text-dark fs-16">+123 45 56 879</p>
+                    </div>
+                    <div class="mt-4">
+                        <h5 class="text-muted fw-medium fs-14">Address</h5>
+                        <p class="text-dark fs-16">09 Design Street, Downtown Victoria, <br/>Australia</p>
+                    </div>
+                </div>
+                 
+                <div class="col-lg-8 mt-5">
+
+                    <form action="/contact" id="myForm" method="POST">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible"  role="alert">
+                        <li>{{ message }}</li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                        <span id="error-msg"></span>
+                        <div class="row g-3">
+                            <div class="col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
+                                    <label class="text-muted" for="name">Your name</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" name="email" placeholder="Your email" id="email" required/>
+                                    <label class="text-muted" for="email">Email address</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject" id="subject" required/>
+                                    <label class="text-muted" for="subject">Subject</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" name="message" placeholder="Your Message...." style="height: 100px;"
+                                        id="comments" required></textarea>
+                                    <label class="text-muted" for="comments">Your message</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="submit" id="contactFormsubmit" name="send" class="submitBnt btn btn-primary rounded alert-dismissible"
+                                    value="Send message" onclick="dismissAlert()"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- end container -->
+    </section>
+
+{% endblock section %}
+
+

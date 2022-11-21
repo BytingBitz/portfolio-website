@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Sozia - Responsive Minimal Portfolio & Shop Template | Themesdesign</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="keywords" content="bootstrap 5, premium, marketing, multipurpose" />
+    <meta name="author" content="Themesdesign" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{{url_for('static' ,filename='images/favicon.ico')}}" />
+
+    {% block css %}
+    {% include 'partials/css.html' %}
+    {% endblock css %}
+
+
+</head>
+
+<body data-bs-target=".navbar" data-bs-offset="110">
+    <!-- light-dark mode button -->
+    <a href="javascript: void(0);" id="mode" data-class="light" class="text-white rounded-end mode-btn" onclick="changeMode(event)">
+        <i class="mode-dark mx-auto" data-feather="moon"></i>
+        <i class="bx-spin mode-light" data-feather="sun"></i>
+    </a>
+    {% block navbar %}
+    {% include 'partials/navbar.html' %}
+    {% endblock navbar %}
+
+    {% block section %}
+    {% endblock section %}  
+
+    {% block brand_logo %}    
+    {% include 'partials/brand_logo.html' %}
+    {% endblock brand_logo %}
+
+    {% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock footer %}    
+
+    {% block style_swticher %}
+    {% include 'partials/style_swticher.html' %}
+    {% endblock style_swticher %}
+
+    {% block extra_js %}    
+    {% endblock extra_js %}
+
+    {% block javascript %}
+    {% include 'partials/javascript.html' %}
+    {% endblock javascript %}
+
+</body>
+
+</html>
