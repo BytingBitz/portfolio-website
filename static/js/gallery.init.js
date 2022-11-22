@@ -1,10 +1,3 @@
-/**
- * Theme: Inspiro - Portfolio Template
- * Author: Shreethemes
- * Gallery Js
- */
-
- 
 var Shuffle = window.Shuffle;
 
 class Demo {

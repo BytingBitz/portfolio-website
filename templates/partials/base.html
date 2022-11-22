@@ -1,14 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
-    <title>Sozia - Responsive Minimal Portfolio & Shop Template | Themesdesign</title>
+    <title>Jordan Amalfitano</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
-    <meta name="keywords" content="bootstrap 5, premium, marketing, multipurpose" />
-    <meta name="author" content="Themesdesign" />
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{url_for('static' ,filename='images/favicon.ico')}}" />
@@ -16,8 +12,6 @@
     {% block css %}
     {% include 'partials/css.html' %}
     {% endblock css %}
-
-
 </head>
 
 <body data-bs-target=".navbar" data-bs-offset="110">
@@ -32,10 +26,6 @@
 
     {% block section %}
     {% endblock section %}  
-
-    {% block brand_logo %}    
-    {% include 'partials/brand_logo.html' %}
-    {% endblock brand_logo %}
 
     {% block footer %}
     {% include 'partials/footer.html' %}

@@ -2,7 +2,6 @@
 
 {% block section %}
 
-    <!-- Start Title -->
     <section>
         <div class="container">
             <div class="row">
@@ -13,11 +12,8 @@
                         sollicitudin, adipisicing elit sed lorem quis bibendum auctor.</p>
                 </div>
             </div>
-            <!-- end row -->
         </div>
-        <!-- end container -->
     </section>
-    <!-- End Title -->
 
     <section class="sm-section">
         <div class="container">
@@ -36,9 +32,7 @@
                         <p class="text-dark fs-16">09 Design Street, Downtown Victoria, <br/>Australia</p>
                     </div>
                 </div>
-                 
                 <div class="col-lg-8 mt-5">
-
                     <form action="/contact" id="myForm" method="POST">
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -91,9 +85,7 @@
                     </form>
                 </div>
             </div>
-        </div> <!-- end container -->
+        </div>
     </section>
 
 {% endblock section %}
-
-

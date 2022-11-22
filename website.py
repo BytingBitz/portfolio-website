@@ -1,23 +1,28 @@
+''' Creation Date: 22/11/2022 '''
+
 from flask import Flask,render_template,request,redirect,flash
 from flask_sqlalchemy import SQLAlchemy
+
+
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///sozia.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db= SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 
   
 #Index Page
 @app.route("/")
-def index():    
-    return render_template('index.html')    
+@app.route("/home")
+def home():    
+    return render_template('home.html')    
 
 #About Page
 @app.route("/about")
 def about():    
-    return render_template('about/about.html')  
+    return render_template('about.html')  
 
 
 ####PORTFOLIO######
@@ -48,10 +53,10 @@ class Contactus(db.Model):
 @app.route("/contact" , methods=['GET' , 'POST'])
 def contactus():  
     if request.method == 'POST':  
-        name= request.form.get('name')
-        email= request.form.get('email')
-        subject= request.form.get('subject')
-        message= request.form.get('message')
+        name = request.form.get('name')
+        email = request.form.get('email')
+        subject = request.form.get('subject')
+        message = request.form.get('message')
         contactus = Contactus(name=name , email=email , subject=subject , message=message)   
         db.session.add(contactus)
         db.session.commit()  

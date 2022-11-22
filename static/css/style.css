@@ -1,8 +1,3 @@
-/*
-Template Name: Sozia - Minimal Portfolio & Shop Template
-Author: Themesdesign
-File: Main scss file
-*/
 /*******************************
 1.General
 2.Helper
@@ -438,6 +433,10 @@ h6 {
   color: #ffffff;
   background: #70a67c;
   border-color: #70a67c;
+}
+
+.btn-width-sm {
+  width: 150px;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
