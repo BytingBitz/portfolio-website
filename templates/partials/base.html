@@ -5,28 +5,30 @@
     <meta charset="UTF-8" />
     <title>Jordan Amalfitano</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- App favicon -->
     <link rel="shortcut icon" href="{{url_for('static' ,filename='images/favicon.ico')}}" />
 
     {% block css %}
     {% include 'partials/css.html' %}
     {% endblock css %}
+
 </head>
 
 <body data-bs-target=".navbar" data-bs-offset="110">
-    <!-- light-dark mode button -->
-    <a href="javascript: void(0);" id="mode" data-class="light" class="text-white rounded-end mode-btn" onclick="changeMode(event)">
-        <i class="mode-dark mx-auto" data-feather="moon"></i>
-        <i class="bx-spin mode-light" data-feather="sun"></i>
-    </a>
-    {% block navbar %}
-    {% include 'partials/navbar.html' %}
-    {% endblock navbar %}
+    <div style="min-height:100vh;">
+        <a href="javascript: void(0);" id="mode" data-class="light" class="text-white rounded-end mode-btn" onclick="changeMode(event)">
+            <i class="mode-dark mx-auto" data-feather="moon"></i>
+            <i class="bx-spin mode-light" data-feather="sun"></i>
+        </a>
 
-    {% block section %}
-    {% endblock section %}  
+        {% block navbar %}
+        {% include 'partials/navbar.html' %}
+        {% endblock navbar %}
 
+        {% block section %}
+        {% endblock section %}
+
+    </div>
+    
     {% block footer %}
     {% include 'partials/footer.html' %}
     {% endblock footer %}    

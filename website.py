@@ -61,10 +61,10 @@ def contactus():
         db.session.add(contactus)
         db.session.commit()  
         flash(' Your response has been successfully saved. We will contact you soon.')        
-        return render_template('contact/contact.html')
+        return render_template('contact.html')
             
     contactus = Contactus.query.all()
-    return render_template('contact/contact.html',contactus=contactus)       
+    return render_template('contact.html',contactus=contactus)       
 
 if __name__ == "__main__":  
     app.run(debug=True)     

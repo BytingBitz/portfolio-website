@@ -3,11 +3,6 @@
 */
 
 
-window.addEventListener('scroll', (ev) => {
-    ev.preventDefault();
-    windowScroll();
-})
-
 // feather icon
 feather.replace()
 
@@ -94,32 +89,31 @@ function fadeIn() {
 // Set Default Mode
 defaultMode();
 function defaultMode(e) {
+    console.log('test')
     if (window.localStorage.getItem('mode') == null) {
         var mode = 'light'
     }else{
         var mode = window.localStorage.getItem('mode');
     }
-
-
     if (mode == "light") {
         var x = document.getElementById("app-css");  
         var y = document.getElementById("mode");  
-        x.setAttribute('href', '../static/css/style-dark.css')
+        x.setAttribute('href', '../static/css/style.css')
         y.setAttribute('data-class', mode)
     }else{
         var x = document.getElementById("app-css");
         var y = document.getElementById("mode");  
-        x.setAttribute('href', '../static/css/style.css')
+        x.setAttribute('href', '../static/css/style-dark.css')
         y.setAttribute('data-class', mode)
     }    
 }
+
 
 // light/dark mode button
 function changeMode(event) {
     var currentMode = event.currentTarget.dataset.class;
     var x = document.getElementById("app-css");
     var y = document.getElementById("mode");
-
     if (currentMode === "light") {
         x.setAttribute('href', '../static/css/style-dark.css');
         y.setAttribute('data-class', 'dark');
@@ -159,9 +153,6 @@ function defaultColor(e) {
         color = window.localStorage.getItem('color');
     }
     document.getElementById('color-opt').href = '../static/css/colors/' + color + '.css';
-
-
-
 }
 
 
