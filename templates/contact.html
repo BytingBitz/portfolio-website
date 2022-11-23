@@ -6,33 +6,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-9">
-                    <h2 class="text-dark fw-light lh-base mt-5">Let's Keep In <span class="title fw-medium">Touch</span></h2>
-                    <p class="fs-16 text-muted mb-0">Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
-                        consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean
-                        sollicitudin, adipisicing elit sed lorem quis bibendum auctor.</p>
+                    <h2 class="text-dark fw-light lh-base mt-5">Feel free to <span class="title fw-medium">Contact</span> me.</h2>
+                    <p class="fs-16 text-muted mb-0">You can fill the form below to send me an email, otherwise you can find my
+                        LinkedIn and Github links at the bottom of the website. I am always keen to explore new opportunities
+                        and share my knowledge with others!</p>
                 </div>
             </div>
         </div>
     </section>
+    <br>
 
     <section class="sm-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 mt-5">
-                    <div>
-                        <h5 class="text-muted fw-medium fs-14">Email Address</h5>
-                        <p class="text-dark fs-16">support.yourdomain@email.com</p>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="text-muted fw-medium fs-14">Telephone</h5>
-                        <p class="text-dark fs-16">+123 45 56 879</p>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="text-muted fw-medium fs-14">Address</h5>
-                        <p class="text-dark fs-16">09 Design Street, Downtown Victoria, <br/>Australia</p>
-                    </div>
-                </div>
-                <div class="col-lg-8 mt-5">
+                <div class="col-lg-12 mt-5">
                     <form action="/contact" id="myForm" method="POST">
                     {% with messages = get_flashed_messages() %}
                     {% if messages %}
@@ -70,7 +57,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-floating mb-3">
-                                    <textarea class="form-control" name="message" placeholder="Your Message...." style="height: 100px;"
+                                    <textarea class="form-control" name="message" placeholder="Your Message...." style="height: 150px;"
                                         id="comments" required></textarea>
                                     <label class="text-muted" for="comments">Your message</label>
                                 </div>

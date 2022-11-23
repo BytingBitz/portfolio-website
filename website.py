@@ -53,17 +53,17 @@ class Contactus(db.Model):
 @app.route("/contact" , methods=['GET' , 'POST'])
 def contactus():  
     if request.method == 'POST':  
-        name = request.form.get('name')
-        email = request.form.get('email')
-        subject = request.form.get('subject')
-        message = request.form.get('message')
-        contactus = Contactus(name=name , email=email , subject=subject , message=message)   
-        db.session.add(contactus)
-        db.session.commit()  
+        # name = request.form.get('name')
+        # email = request.form.get('email')
+        # subject = request.form.get('subject')
+        # message = request.form.get('message')
+        # contactus = Contactus(name=name , email=email , subject=subject , message=message)   
+        # db.session.add(contactus)
+        # db.session.commit()  
         flash(' Your response has been successfully saved. We will contact you soon.')        
         return render_template('contact.html')
             
-    contactus = Contactus.query.all()
+    # contactus = Contactus.query.all()
     return render_template('contact.html',contactus=contactus)       
 
 if __name__ == "__main__":  
