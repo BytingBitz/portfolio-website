@@ -67,11 +67,73 @@ function activateMenu() {
     }
 }
 
+function componentToHex(value) {
+    var hex = value.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex(rgb) {
+    return "#" + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
+}
+
+function getRandColor(brightness) {
+    // Six levels of brightness from 0 to 5, 0 being the darkest
+    var num = [Math.random() * 256, Math.random() * 256, Math.random() * 256];
+    var mix = [brightness*51, brightness*51, brightness*51]; //51 => 255/5
+    var rgb = [num[0] + mix[0], num[1] + mix[1], num[2] + mix[2]].map(function(x){ return Math.round(x/2.0)})
+    return rgbToHex(rgb);
+}
+
+function getNewShade(hexColor, magnitude) {
+    hexColor = hexColor.replace(`#`, ``);
+    if (hexColor.length === 6) {
+        const decimalColor = parseInt(hexColor, 16);
+        let r = (decimalColor >> 16) + magnitude;
+        r > 255 && (r = 255);
+        r < 0 && (r = 0);
+        let g = (decimalColor & 0x0000ff) + magnitude;
+        g > 255 && (g = 255);
+        g < 0 && (g = 0);
+        let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
+        b > 255 && (b = 255);
+        b < 0 && (b = 0);
+        return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+    } else {
+        return hexColor;
+    }
+}
+
+function newColour() {
+    var new_colour = getRandColor(3);
+    console.log(new_colour)
+    var new_dark_colour = getNewShade(new_colour, -12);
+    var array = {
+        main: new_colour,
+        dark: new_dark_colour
+    };
+    console.log(array)
+    localStorage.setItem("colour", JSON.stringify(array));
+    loadColour();
+}
+
+function loadColour() {
+    var colour = JSON.parse(localStorage.getItem("colour"));
+    if (!colour)
+        var colour = {
+            main: "#fe5f55", 
+            dark: "#fd4337"
+        };
+    console.log(colour)
+    var root = document.querySelector(":root");
+    root.style.setProperty("--colour-main", colour["main"]);
+    root.style.setProperty("--colour-dark", colour["dark"]);
+}
+loadColour();
+
 window.onload = function loader() {
     // Menus
     activateMenu();
 }
-
 
 function fadeIn() {
     var fade = document.getElementById("error-msg");
@@ -84,85 +146,4 @@ function fadeIn() {
             clearInterval(intervalID);
         }
     }, 200);
-}
-
-// Set Default Mode
-defaultMode();
-function defaultMode(e) {
-    console.log('test')
-    if (window.localStorage.getItem('mode') == null) {
-        var mode = 'light'
-    }else{
-        var mode = window.localStorage.getItem('mode');
-    }
-    if (mode == "light") {
-        var x = document.getElementById("app-css");  
-        var y = document.getElementById("mode");  
-        x.setAttribute('href', '../static/css/style.css')
-        y.setAttribute('data-class', mode)
-    }else{
-        var x = document.getElementById("app-css");
-        var y = document.getElementById("mode");  
-        x.setAttribute('href', '../static/css/style-dark.css')
-        y.setAttribute('data-class', mode)
-    }    
-}
-
-
-// light/dark mode button
-function changeMode(event) {
-    var currentMode = event.currentTarget.dataset.class;
-    var x = document.getElementById("app-css");
-    var y = document.getElementById("mode");
-    if (currentMode === "light") {
-        x.setAttribute('href', '../static/css/style-dark.css');
-        y.setAttribute('data-class', 'dark');
-        window.localStorage.removeItem('mode');
-        window.localStorage.setItem("mode", "dark");
-    } else {
-        x.setAttribute('href', '../static/css/style.css');
-        y.setAttribute('data-class', 'light');
-        window.localStorage.removeItem('mode');
-        window.localStorage.setItem("mode", "light");
-    }
-}
-
-// Swicher
-function toggleSwitcher() {
-    var i = document.getElementById('style-switcher');
-    if (i.style.left === "-189px") {
-        i.style.left = "-0px";
-    } else {
-        i.style.left = "-189px";
-    }
-};
-
-function setColor(theme) {
-    window.localStorage.removeItem('color');
-    window.localStorage.setItem("color", theme);
-    document.getElementById('color-opt').href = '../static/css/colors/' + theme + '.css';
-    toggleSwitcher(false);
-};
-
-// Set Default  Color
-defaultColor();
-function defaultColor(e) {
-    if (window.localStorage.getItem('color') == null) {
-        color = 'default'
-    }else{
-        color = window.localStorage.getItem('color');
-    }
-    document.getElementById('color-opt').href = '../static/css/colors/' + color + '.css';
-}
-
-
-// To remove section content from index and contact page
-if(window.location.pathname == '/contact' || window.location.pathname == '/'
-    || window.location.pathname == '/blog/singlepost') {
-    document.getElementById('brand_logo').style.display = "none" ;
-}
-
-if(window.location.pathname == '/shop/products' || window.location.pathname == '/shop/productlist'
-    || window.location.pathname == '/blog/bloglisting' || window.location.pathname == '/blog/bloggrid') {
-    document.getElementById('title_logo').style.display = "none";
 }

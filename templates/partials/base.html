@@ -15,10 +15,6 @@
 
 <body data-bs-target=".navbar" data-bs-offset="110">
     <div style="min-height:100vh;">
-        <a href="javascript: void(0);" id="mode" data-class="light" class="text-white rounded-end mode-btn" onclick="changeMode(event)">
-            <i class="mode-dark mx-auto" data-feather="moon"></i>
-            <i class="bx-spin mode-light" data-feather="sun"></i>
-        </a>
 
         {% block navbar %}
         {% include 'partials/navbar.html' %}
@@ -32,10 +28,6 @@
     {% block footer %}
     {% include 'partials/footer.html' %}
     {% endblock footer %}    
-
-    {% block style_swticher %}
-    {% include 'partials/style_swticher.html' %}
-    {% endblock style_swticher %}
 
     {% block extra_js %}    
     {% endblock extra_js %}
