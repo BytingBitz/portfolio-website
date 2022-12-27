@@ -123,7 +123,6 @@ function loadColour() {
             main: "#fe5f55", 
             dark: "#fd4337"
         };
-    console.log(colour)
     var root = document.querySelector(":root");
     root.style.setProperty("--colour-main", colour["main"]);
     root.style.setProperty("--colour-dark", colour["dark"]);
@@ -131,7 +130,6 @@ function loadColour() {
 loadColour();
 
 window.onload = function loader() {
-    // Menus
     activateMenu();
 }
 
