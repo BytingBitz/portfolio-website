@@ -37,7 +37,7 @@
                         <div class="row g-3">
                             <div class="col-lg-6">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required />
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name" required/>
                                     <label class="text-muted" for="name">Your name</label>
                                 </div>
                             </div>
@@ -71,6 +71,7 @@
                                     value="Send message" onclick="dismissAlert()"/>
                             </div>
                         </div>
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     </form>
                 </div>
             </div>

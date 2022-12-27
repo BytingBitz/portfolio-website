@@ -23,18 +23,18 @@
                             <li class="list-inline-item categories position-relative my-sm-0 my-2"
                                 data-group="business"><a class="" href="#">Business</a></li>
                             <li class="list-inline-item categories position-relative my-sm-0 my-2"
-                                data-group="development"><a class="" href="#">Coding</a></li>
+                                data-group="coding"><a class="" href="#">Coding</a></li>
                             <li class="list-inline-item categories position-relative my-sm-0 my-2"
                                 data-group="analysis"><a class="" href="#">Analysis</a></li>
                             <li class="list-inline-item categories position-relative my-sm-0 my-2"
-                                data-group="research"><a class="" href="#">Other</a></li>
+                                data-group="other"><a class="" href="#">Other</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div id="grid" class="row">
-                <div class="col-lg-4 col-md-6 col-12 spacing picture-item" data-groups='["branding"]'>
+                <div class="col-lg-4 col-md-6 col-12 spacing picture-item" data-groups="{{[request.args.get('f')]}}">
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
