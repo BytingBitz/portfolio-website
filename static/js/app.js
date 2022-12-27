@@ -106,7 +106,7 @@ function getNewShade(hexColor, magnitude) {
 function newColour() {
     var new_colour = getRandColor(3);
     console.log(new_colour)
-    var new_dark_colour = getNewShade(new_colour, -12);
+    var new_dark_colour = getNewShade(new_colour, -25);
     var array = {
         main: new_colour,
         dark: new_dark_colour

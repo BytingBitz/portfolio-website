@@ -655,8 +655,8 @@ h6 {
 }
 
 .navbar .navbar-nav .nav-item .nav-link {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 650;
   padding: 10px 15px;
   color: rgba(56, 56, 64, 0.75);
   letter-spacing: 1px;
@@ -734,7 +734,12 @@ h6 {
   color: rgba(56, 56, 64, 0.75);
 }
 
-.nav-sticky.navbar .navbar-nav .nav-item .nav-link:hover, .nav-sticky.navbar .navbar-nav .nav-item .nav-link:active, .nav-sticky.navbar .navbar-nav .nav-item .nav-link:focus, .nav-sticky.navbar .navbar-nav .nav-item .nav-link.active {
+ .nav-sticky.navbar .navbar-nav .nav-item .nav-link:active, .nav-sticky.navbar .navbar-nav .nav-item .nav-link.active {
+  color: #fd4337;
+  color: var(--colour-main);
+}
+
+.nav-sticky.navbar .navbar-nav .nav-item .nav-link:hover, .nav-sticky.navbar .navbar-nav .nav-item .nav-link:focus {
   color: #fd4337;
   color: var(--colour-dark);
 }
@@ -759,10 +764,16 @@ h6 {
   border-radius: 3px;
 }
 
-.filter-options li:hover a, .filter-options li.active a, .filter-options li:active a, .filter-options li:focus a {
+.filter-options li.active a {
   color: #ffffff;
   background-color: #fe5f55;
   background-color: var(--colour-main);
+}
+
+.filter-options li:hover a, .filter-options li:focus a {
+  color: #ffffff;
+  background-color: #fd4337;
+  background-color: var(--colour-dark);
 }
 
 .filter-box {
