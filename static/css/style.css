@@ -764,7 +764,7 @@ h6 {
   border-radius: 3px;
 }
 
-.filter-options li.active a {
+.filter-options li.active a, .filter-options li:active a {
   color: #ffffff;
   background-color: #fe5f55;
   background-color: var(--colour-main);

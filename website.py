@@ -54,6 +54,9 @@ class Email:
         self.subject = form.subject.data
         self.message = form.message.data
 
+def send_email(email: Email):
+    pass
+
 @app.route("/contact" , methods=['GET' , 'POST'])
 def contactus():  
     if request.method == 'POST':
