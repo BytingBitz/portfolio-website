@@ -42,18 +42,20 @@ def work():
 
 class ContactForm(FlaskForm):
     ''' Contents: All fields from the contact us page form. '''
-    name = StringField('name', [InputRequired(), length(max=32)])
-    email = EmailField('email', [InputRequired(), Email()])
-    subject = StringField('subject', [InputRequired(), length(max=1)])
-    message = TextAreaField('message', [InputRequired(), length(max=1)])
+    name = StringField('name', [InputRequired(), length(max=60, message='Name must not exceed 60 characters...')])
+    email = EmailField('email', [InputRequired(), Email(message='Email must contain a valid email...')])
+    subject = StringField('subject', [InputRequired(), length(max=60, message='Subject must not exceed 60')])
+    message = TextAreaField('message', [InputRequired(), length(max=1000, message='Message must nott exceed 1000 characters...')])
 
 class Email:
+    ''' Contents: All user entered contact us form fields. '''
     def __init__(self, form: ContactForm):
         self.name = form.name.data
         self.email = form.email.data
         self.subject = form.subject.data
         self.message = form.message.data
 
+address = 'test-da0f03@test.mailgenius.com'
 def send_email(email: Email):
     pass
 
@@ -63,13 +65,16 @@ def contactus():
         form = ContactForm()
         if form.validate_on_submit():
             try:
-                with limiter.limit("2 per week"):    
-                    email = Email(form)
-                    flash('Your message has been sent!')
+                with limiter.limit("2 per day"):    
+                    send_email(Email(form))
+                    flash('Your message has been emailed!', 'alert-success')
             except RateLimitExceeded:
-                flash('You have sent to many emails.')       
+                flash('Denied, to many email requests.', 'alert-warning')
+            except Exception:
+                flash('Email failed, please try later...', 'alert-danger')       
         else:
-            flash(form.errors)
+            for error in form.errors:
+                flash(form.errors[error][0], 'alert-danger')
     return render_template('contact.html')       
 
 if __name__ == "__main__":  
