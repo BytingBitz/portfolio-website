@@ -30,24 +30,24 @@ except Exception:
 limiter = Limiter(
     app,
     key_func=get_remote_address,
-    default_limits=["500 per day"],
-    storage_uri="memory://",
+    default_limits=['500 per day'],
+    storage_uri='memory://',
 )
 
 port = 465
-smtp_server = "smtp.gmail.com"
+smtp_server = 'smtp.gmail.com'
 context = ssl.create_default_context()
 
-@app.route("/")
-@app.route("/home")
+@app.route('/')
+@app.route('/home')
 def home():
     return render_template('home.html')    
 
-@app.route("/about")
+@app.route('/about')
 def about():    
     return render_template('about.html')  
 
-@app.route("/portfolio/work")
+@app.route('/portfolio/work')
 def work():    
     return render_template('portfolio/work.html')  
 
@@ -97,7 +97,7 @@ def contactus():
         form = ContactForm()
         if form.validate_on_submit():
             try:
-                with limiter.limit("2 per day"):    
+                with limiter.limit('2 per day'):    
                     send_email(Email(form))
                     flash('Your message has been emailed!', 'alert-success')
             except RateLimitExceeded:
@@ -112,7 +112,7 @@ def contactus():
 @app.after_request
 def add_header(response):
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
-    response.headers['Content-Security-Policy'] = "default-src 'self';font-src 'self' fonts.gstatic.com;style-src 'self' fonts.googleapis.com;object-src 'none'; img-src 'self' data: https://www.w3.org/2000/svg; require-trusted-types-for 'script'"
+    response.headers['Content-Security-Policy'] = "default-src 'self';font-src 'self' fonts.gstatic.com;style-src 'self' fonts.googleapis.com;object-src 'none';img-src 'self' data: https://www.w3.org/2000/svg;require-trusted-types-for 'script'"
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
