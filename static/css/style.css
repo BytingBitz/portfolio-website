@@ -654,6 +654,10 @@ h6 {
   position: relative;
 }
 
+.navbar-min-height {
+  min-height: 100vh !important;
+}
+
 .navbar .navbar-nav .nav-item .nav-link {
   font-size: 15px;
   font-weight: 650;
@@ -978,6 +982,10 @@ h6 {
   background-color: var(--colour-main);
   border-color: #fe5f55;
   border-color: var(--colour-main);
+}
+
+.form-textarea {
+  height: 150px !important;
 }
 
 .form-select {

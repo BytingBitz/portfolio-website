@@ -7,14 +7,25 @@ from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter, RateLimitExceeded
 from flask_limiter.util import get_remote_address
-from os import urandom
+from os import urandom, getenv
+from dotenv import load_dotenv
+import smtplib, ssl
+from email.mime.text import MIMEText
+
+def get_environment(variable: str):
+	''' Returns: Loaded .env file variable. '''
+	load_dotenv() 
+	return getenv(variable)
 
 csrf = CSRFProtect()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = urandom(128)
 app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf.init_app(app)
-app.secret_key = b'test'
+try:
+    app.secret_key = bytes(get_environment('SECRET'), encoding='utf-8')
+except Exception:
+    app.secret_key = b'uahbdauwbdaygwvd'
 
 limiter = Limiter(
     app,
@@ -22,6 +33,10 @@ limiter = Limiter(
     default_limits=["500 per day"],
     storage_uri="memory://",
 )
+
+port = 465
+smtp_server = "smtp.gmail.com"
+context = ssl.create_default_context()
 
 @app.route("/")
 @app.route("/home")
@@ -36,16 +51,25 @@ def about():
 def work():    
     return render_template('portfolio/work.html')  
 
-# @app.route("/portfolio/workdetail")
-# def workdetail():    
-#     return render_template('portfolio/workdetail.html') 
-
 class ContactForm(FlaskForm):
     ''' Contents: All fields from the contact us page form. '''
-    name = StringField('name', [InputRequired(), length(max=60, message='Name must not exceed 60 characters...')])
-    email = EmailField('email', [InputRequired(), Email(message='Email must contain a valid email...')])
-    subject = StringField('subject', [InputRequired(), length(max=60, message='Subject must not exceed 60')])
-    message = TextAreaField('message', [InputRequired(), length(max=1000, message='Message must nott exceed 1000 characters...')])
+    name = StringField('name', [
+        InputRequired(message='Name is required...'), 
+        length(max=60, message='Name must not exceed 60 characters...')
+        ])
+    email = EmailField('email', [
+        InputRequired(message='Email is required...'), 
+        Email(message='Email must contain a valid email...'),
+        length(max=60, message='Email must not exceed 60 characters...')
+        ])
+    subject = StringField('subject', [
+        InputRequired(message='Subject is required...'), 
+        length(max=60, message='Subject must not exceed 60...')
+        ])
+    message = TextAreaField('message', [
+        InputRequired(message='Message is required...'), 
+        length(max=1000, message='Message must nott exceed 1000 characters...')
+        ])
 
 class Email:
     ''' Contents: All user entered contact us form fields. '''
@@ -53,11 +77,19 @@ class Email:
         self.name = form.name.data
         self.email = form.email.data
         self.subject = form.subject.data
-        self.message = form.message.data
+        self.text = form.message.data
+        self.receiver = get_environment('RECEIVER')
+        self.sender = get_environment('ACCOUNT')
+        self.password = get_environment('APPPASSWORD')
 
-address = 'test-da0f03@test.mailgenius.com'
 def send_email(email: Email):
-    pass
+    ''' Purpose: Sends email to specified destination. '''
+    with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+        server.login(email.sender, email.password)
+        msg = MIMEText('From: %s\n\n%s' % (email.email, email.text))
+        msg['Subject'] = email.subject
+        msg['To'] = email.receiver
+        server.sendmail(email.sender, email.receiver, msg.as_string())
 
 @app.route("/contact" , methods=['GET' , 'POST'])
 def contactus():  
@@ -76,6 +108,15 @@ def contactus():
             for error in form.errors:
                 flash(form.errors[error][0], 'alert-danger')
     return render_template('contact.html')       
+
+@app.after_request
+def add_header(response):
+    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+    response.headers['Content-Security-Policy'] = "default-src 'self';font-src 'self' fonts.gstatic.com;style-src 'self' fonts.googleapis.com;object-src 'none'; img-src 'self' data: https://www.w3.org/2000/svg; require-trusted-types-for 'script'"
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    return response
 
 if __name__ == "__main__":  
     app.run(debug=True)

@@ -1,12 +1,12 @@
-/*   
-    File Description: Main JS file of the template
-*/
 
-
-// feather icon
+// Feather Icon
 feather.replace()
 
-
+// Footer Copyright
+var footertext = document.getElementById('footertext')
+var text = (((new Date().getFullYear()).toString()).concat(' \u00A9 Jordan Amalfitano'))
+var footercontent = document.createTextNode(text)
+footertext.appendChild(footercontent)
 
 //Menu Active
 function getClosest(elem, selector) {
@@ -103,7 +103,7 @@ function getNewShade(hexColor, magnitude) {
     }
 }
 
-function newColour() {
+document.getElementById('colour-button').onclick = function () {
     var new_colour = getRandColor(3);
     console.log(new_colour)
     var new_dark_colour = getNewShade(new_colour, -25);
