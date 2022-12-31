@@ -72,7 +72,7 @@ class ContactForm(FlaskForm):
         ])
 
 class Email:
-    ''' Contents: All user entered contact us form fields. '''
+    ''' Contents: All email field values including user entered. '''
     def __init__(self, form: ContactForm):
         self.name = form.name.data
         self.email = form.email.data
@@ -86,7 +86,7 @@ def send_email(email: Email):
     ''' Purpose: Sends email to specified destination. '''
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
         server.login(email.sender, email.password)
-        msg = MIMEText('From: %s\n\n%s' % (email.email, email.text))
+        msg = MIMEText('From: %s\n\n%s' % (email.email, email.text), charset='utf-8')
         msg['Subject'] = email.subject
         msg['To'] = email.receiver
         server.sendmail(email.sender, email.receiver, msg.as_string())
