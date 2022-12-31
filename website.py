@@ -48,9 +48,9 @@ def home():
 def about():    
     return render_template('about.html')  
 
-@app.route('/portfolio/work')
+@app.route('/test')
 def work():    
-    return render_template('portfolio/work.html')  
+    return render_template('project.html')  
 
 class ContactForm(FlaskForm):
     ''' Contents: All fields from the contact us page form. '''

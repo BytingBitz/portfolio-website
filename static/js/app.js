@@ -1,7 +1,4 @@
 
-// Feather Icon
-feather.replace()
-
 // Footer Copyright
 var footertext = document.getElementById('footertext')
 var text = (((new Date().getFullYear()).toString()).concat(' \u00A9 Jordan Amalfitano'))
