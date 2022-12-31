@@ -25,6 +25,7 @@ csrf.init_app(app)
 try:
     app.secret_key = bytes(get_environment('SECRET'), encoding='utf-8')
 except Exception:
+    print('Warning: Found no app.secret_key, using default value...')
     app.secret_key = b'uahbdauwbdaygwvd'
 
 limiter = Limiter(
@@ -68,7 +69,7 @@ class ContactForm(FlaskForm):
         ])
     message = TextAreaField('message', [
         InputRequired(message='Message is required...'), 
-        length(max=1000, message='Message must nott exceed 1000 characters...')
+        length(max=1000, message='Message must not exceed 1000 characters...')
         ])
 
 class Email:

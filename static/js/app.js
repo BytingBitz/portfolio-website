@@ -105,13 +105,11 @@ function getNewShade(hexColor, magnitude) {
 
 document.getElementById('colour-button').onclick = function () {
     var new_colour = getRandColor(3);
-    console.log(new_colour)
     var new_dark_colour = getNewShade(new_colour, -25);
     var array = {
         main: new_colour,
         dark: new_dark_colour
     };
-    console.log(array)
     localStorage.setItem("colour", JSON.stringify(array));
     loadColour();
 }
