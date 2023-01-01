@@ -103,11 +103,11 @@ function getNewShade(hexColor, magnitude) {
 document.getElementById('colour-button').onclick = function () {
     var new_colour = getRandColor(3);
     var new_dark_colour = getNewShade(new_colour, -25);
-    var array = {
+    var colour = {
         main: new_colour,
         dark: new_dark_colour
     };
-    localStorage.setItem("colour", JSON.stringify(array));
+    localStorage.setItem("colour", JSON.stringify(colour));
     loadColour();
 }
 
@@ -139,4 +139,35 @@ function fadeIn() {
             clearInterval(intervalID);
         }
     }, 200);
+}
+
+try {
+    var slideIndex = 1;
+    showSlides(slideIndex);
+}
+catch (e) {}
+
+try {
+    document.getElementById('prev-button').onclick = function () {plusSlides(-1)}
+    document.getElementById('next-button').onclick = function () {plusSlides(-1)}
+}
+catch (e) {}
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("carousel-slide");
+    if(n > slides.length) {
+        slideIndex = 1
+    }
+    if(n < 1) {
+        slideIndex = slides.length
+    }
+    for(i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
 }

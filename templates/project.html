@@ -24,11 +24,25 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <img src="{{url_for('static' ,filename='images/works/img9.jpg')}}" alt="about-img" class="img-fluid rounded-3 pe-lg-4" />
+                    {% if project.images|length > 1 %}
+                    <div class="slideshow-container">
+                        {% for image in project.images %}
+                        <div class="carousel-slide slide-fade">
+                            {% set image_path = constants.imagepath ~ image %}
+                            <img src="{{url_for('static' ,filename=image_path)}}" alt="project-img" class="img-fluid rounded-3">
+                        </div>
+                        {% endfor %}
+                        <a class="prev-slide" id="prev-button" type="button">&#10094;</a>
+                        <a class="next-slide" id="next-button" type="button">&#10095;</a>
+                    </div>
+                    {% else %}
+                    {% set image_path = constants.imagepath ~ project.images[0] %}
+                    <img src="{{url_for('static' ,filename=image_path)}}" alt="about-img" class="img-fluid rounded-3"/>
+                    {% endif %}
                 </div>
                 <div class="col-lg-6">
                     <div class="d-flex align-items-center py-3">
-                        <h6 class="me-4">Date : <span class="fw-normal text-muted ms-1">14/15/2023</span></h6>
+                        <h6 class="me-4">Date : <span class="fw-normal text-muted ms-1">{{ project.detail.date }}</span></h6>
                     </div>
 
                     <div class="border-top py-4"></div>

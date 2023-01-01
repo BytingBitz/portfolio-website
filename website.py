@@ -1,22 +1,25 @@
 ''' Creation Date: 22/11/2022 '''
 
-from flask import Flask,render_template,request,flash
+from flask import Flask, render_template, request, flash, redirect, url_for
 from wtforms import StringField, TextAreaField, EmailField
 from wtforms.validators import InputRequired, Email, length
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter, RateLimitExceeded
 from flask_limiter.util import get_remote_address
+import json
 from os import urandom, getenv
 from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
 
+# Get .env variables
 def get_environment(variable: str):
 	''' Returns: Loaded .env file variable. '''
 	load_dotenv() 
 	return getenv(variable)
 
+# Setup Environment
 csrf = CSRFProtect()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = urandom(128)
@@ -28,6 +31,24 @@ except Exception:
     print('Warning: Found no app.secret_key, using default value...')
     app.secret_key = b'uahbdauwbdaygwvd'
 
+# Load Projects JSON
+class JSON:
+    ''' Contents: Stores project data and associated methods. '''
+    def __init__(self):
+        with open('projects.json') as data:
+            self.data = json.load(data)
+    def get_constants(self):
+        ''' Returns: Dictionary of project constant values. '''
+        return self.data['constants']
+    def get_project(self, project: str):
+        ''' Returns: Dictionary of project specific values. '''
+        return self.data['projects'][project]
+    def get_endpoints(self):
+        ''' Returns: List of all project endpoints. '''
+        return list(Projects.data['projects'].keys())
+Projects = JSON()
+
+# Set Limits
 limiter = Limiter(
     app,
     key_func=get_remote_address,
@@ -35,23 +56,33 @@ limiter = Limiter(
     storage_uri='memory://',
 )
 
+# Email Setup
 port = 465
 smtp_server = 'smtp.gmail.com'
 context = ssl.create_default_context()
 
+# Home Route
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html')    
+    return render_template('home.html', datagroups=['business', 'coding', 'analysis', 'other'])    
 
+# About Route
 @app.route('/about')
 def about():    
     return render_template('about.html')  
 
-@app.route('/test')
-def work():    
-    return render_template('project.html')  
+# Project Routes
+@app.route('/project/<endpoint>')
+def project(endpoint: str):
+    if endpoint in Projects.get_endpoints():
+        constants = Projects.get_constants()
+        project = Projects.get_project(endpoint)
+        return render_template('project.html', project=project, constants=constants)
+    else:
+        return redirect(url_for('home'))  
 
+# Contact Route
 class ContactForm(FlaskForm):
     ''' Contents: All fields from the contact us page form. '''
     name = StringField('name', [
@@ -110,7 +141,13 @@ def contactus():
                 flash(form.errors[error][0], 'alert-danger')
     return render_template('contact.html')       
 
-@app.after_request
+# Error Handling
+@app.errorhandler(404)
+def not_found(e):
+    return redirect(url_for('home'))
+
+# Security Headers
+#@app.after_request
 def add_header(response):
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
     response.headers['Content-Security-Policy'] = "default-src 'self';font-src 'self' fonts.gstatic.com;style-src 'self' fonts.googleapis.com;object-src 'none';img-src 'self' data: https://www.w3.org/2000/svg;require-trusted-types-for 'script'"

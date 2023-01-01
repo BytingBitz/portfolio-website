@@ -16,53 +16,48 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-12 filters-group-wrap mb-3">
-                    <div class="filters-group">
+                    <div class="filters-group default-cursor">
                         <ul class="container-filter mb-0 categories-filter list-unstyled filter-options">
                             <li class="list-inline-item categories position-relative active my-sm-0 my-2"
-                                data-group="all"><a class="" href="#">All</a></li>
+                                data-group="all"><a class="pointer">All</a></li>
+                            {% for datagroup in datagroups %}
                             <li class="list-inline-item categories position-relative my-sm-0 my-2"
-                                data-group="business"><a class="" href="#">Business</a></li>
-                            <li class="list-inline-item categories position-relative my-sm-0 my-2"
-                                data-group="coding"><a class="" href="#">Coding</a></li>
-                            <li class="list-inline-item categories position-relative my-sm-0 my-2"
-                                data-group="analysis"><a class="" href="#">Analysis</a></li>
-                            <li class="list-inline-item categories position-relative my-sm-0 my-2"
-                                data-group="other"><a class="" href="#">Other</a></li>
+                                data-group="{{ datagroup }}"><a class="pointer">{{ datagroup[0]|upper}}{{datagroup[1:] }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
             </div>
 
             <div id="grid" class="row">
-                <div class="col-lg-4 col-md-6 col-12 spacing picture-item" data-groups='["branding"]'>
-                    <div
-                        class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
+                <div class="col-lg-4 col-md-6 col-12 spacing picture-item" data-groups='["coding"]'>
+                    <div class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img1.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img1.jpg')}}" class="img-fluid rounded" alt="project-image" />
                             </a>
-                            <div class="content bg-light p-3 shadow">
-                                <h6><a href="/portfolio/workdetail"
-                                        class="text-dark fw-medium fs-15">Iphone Mockup</a></h6>
-                                <p class="fs-14 text-muted font-weight-normal tag mb-0">Branding</p>
+                            <div>
+                                <a class="content bg-light p-3 shadow" href="/project/t">
+                                    <h6 class="text-dark fw-medium fs-15"> Iphone Mockup</h6>
+                                    <p class="fs-14 text-muted font-weight-normal tag mb-0">Learn more...</p>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 col-12 spacing picture-item" data-groups='["designing"]'>
+                <div class="col-lg-4 col-md-6 col-12 spacing picture-item" data-groups='["coding"]'>
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-2.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img3.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img3.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
                                         class="text-dark fw-medium fs-15">Mockup Collection</a>
                                 </h6>
-                                <p class="fs-14 text-muted font-weight-normal tag mb-0">Mockup</p>
+                                <p class="fs-14 text-muted font-weight-normal tag mb-0">Learn more...</p>
                             </div>
                         </div>
                     </div>
@@ -72,9 +67,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-3.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img2.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img2.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -89,9 +83,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-4.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img4.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img4.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -108,7 +101,7 @@
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
                             <a href="javascript:void(0)" class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img6.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                                <img src="{{url_for('static' ,filename='images/projects/img6.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -123,9 +116,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-6.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img9.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img9.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -141,9 +133,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-7.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img8.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img8.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -158,9 +149,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-8.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img7.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img7.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -176,9 +166,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-9.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img12.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img12.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -193,9 +182,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-1.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img10.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img10.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -211,9 +199,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-7.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img11.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img11.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"
@@ -228,9 +215,8 @@
                     <div
                         class="card border-0 work-container work-grid position-relative d-block overflow-hidden rounded">
                         <div class="card-body p-0">
-                            <a href="javascript:void(0)" data-src="{{url_for('static' ,filename='images/works/img-8.jpg')}}" data-gallery="myGal"
-                                class="d-inline-block" title="">
-                                <img src="{{url_for('static' ,filename='images/works/img5.jpg')}}" class="img-fluid rounded" alt="work-image" />
+                            <a class="d-inline-block" title="">
+                                <img src="{{url_for('static' ,filename='images/projects/img5.jpg')}}" class="img-fluid rounded" alt="work-image" />
                             </a>
                             <div class="content bg-light p-3 shadow">
                                 <h6><a href="/portfolio/workdetail"

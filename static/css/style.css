@@ -21,6 +21,14 @@ html {
   background-color: #edeeef;
 }
 
+.default-cursor {
+  cursor: default !important;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
 ::selection {
   background: rgba(151, 160, 175, 0.3);
 }
@@ -766,12 +774,14 @@ h6 {
   font-weight: 500;
   transition: all 0.2s ease-in-out;
   border-radius: 3px;
+  cursor: default;
 }
 
 .filter-options li.active a, .filter-options li:active a {
   color: #ffffff;
   background-color: #fe5f55;
   background-color: var(--colour-main);
+  cursor: default;
 }
 
 .filter-options li:hover a, .filter-options li:focus a {
@@ -1150,4 +1160,64 @@ ul.pattern .color6 {
     max-width: 230px;
     margin: 0 auto;
   }
+}
+
+.slide-fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@-webkit-keyframes fade {
+  from {
+    opacity: .4
+  }
+  to {
+    opacity: 1
+  }
+}
+@keyframes fade {
+  from {
+    opacity: .4
+  }
+  to {
+    opacity: 1
+  }
+}
+
+.prev-slide:hover,
+.next-slide:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+.next-slide {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev-slide,
+.next-slide {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.carousel-slides {
+  display: none
 }
