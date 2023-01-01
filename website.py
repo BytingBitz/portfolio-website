@@ -147,7 +147,7 @@ def not_found(e):
     return redirect(url_for('home'))
 
 # Security Headers
-#@app.after_request
+@app.after_request
 def add_header(response):
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
     response.headers['Content-Security-Policy'] = "default-src 'self';font-src 'self' fonts.gstatic.com;style-src 'self' fonts.googleapis.com;object-src 'none';img-src 'self' data: https://www.w3.org/2000/svg;require-trusted-types-for 'script'"
