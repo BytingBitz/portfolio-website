@@ -6,20 +6,16 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="page-title">
-                        <h2 class="text-dark fw-light lh-base mt-5">Any variation that fits your <span
-                                class="fw-medium title">variation</span></h2>
+                        <h2 class="text-dark fw-light lh-base mt-5">{{ project.detail.title }}</h2>
                         <br>
                         <br>
-                        <p class="fs-16 text-muted mb-0">Aenean sollicitudin, lorem quis bibendum auctor, nisi elit
-                            consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean
-                            sollicitudin, adipisicing elit sed lorem quis bibendum auctor.</p>
+                        <p class="fs-16 text-muted mb-0">{{ project.detail.summary }}</p>
                     </div>
                 </div>
             </div>
         </div>
         <br>
     </section>
-
     <section class="sm-section">
         <div class="container">
             <div class="row align-items-center">
@@ -44,16 +40,8 @@
                     <div class="d-flex align-items-center py-3">
                         <h6 class="me-4">Date : <span class="fw-normal text-muted ms-1">{{ project.detail.date }}</span></h6>
                     </div>
-
                     <div class="border-top py-4"></div>
-                    <p class="text-muted fs-15">
-                        There are many variations of passages of Lorem Ipsum available, but the majority have
-                        suffered alteration in some form, by injected humour, or randomised words which don't look
-                        even slightly believable.If you
-                        are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-                        embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet
-                        tend to repeat predefined chunks.
-                    </p>
+                    <p class="text-muted fs-15">{{ project.detail.description }}</p>
                     <br>
                     <a href="/" class="btn btn-primary btn-width-sm">More Projects<i class="mdi mdi-arrow-right ms-1"></i></a>
                 </div>

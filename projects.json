@@ -1,15 +1,79 @@
 {
     "constants" : {
-        "datagroups-options" : ["business", "coding", "analysis", "other"],
+        "datagroups_options" : ["business", "coding", "analysis", "other"],
         "route" : "/projects/",
         "imagepath" : "images/projects/"
     },
     "projects" : {
         "t" : {
             "highlight" : {
-                "title" : "",
-                "endpoint" : "",
-                "datagroups" : []
+                "title" : "Testing Yay",
+                "datagroups" : ["business"]
+            },
+            "detail" : {
+                "title" : "Any variation that fits your variation",
+                "date" : "14/15/2023",
+                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
+            },
+            "images" : ["img9.jpg", "img10.jpg", "img11.jpg"]
+        },
+        "x" : {
+            "highlight" : {
+                "title" : "Testing Yay",
+                "datagroups" : ["business", "coding"]
+            },
+            "detail" : {
+                "title" : "Any variation that fits your variation",
+                "date" : "14/15/2023",
+                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
+            },
+            "images" : ["img8.jpg", "img7.jpg", "img2.jpg"]
+        },
+        "b" : {
+            "highlight" : {
+                "title" : "Testing Yay",
+                "datagroups" : ["business", "coding"]
+            },
+            "detail" : {
+                "title" : "Any variation that fits your variation",
+                "date" : "14/15/2023",
+                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
+            },
+            "images" : ["img8.jpg", "img7.jpg", "img2.jpg"]
+        },
+        "w" : {
+            "highlight" : {
+                "title" : "Testing Yay",
+                "datagroups" : ["business", "coding"]
+            },
+            "detail" : {
+                "title" : "Any variation that fits your variation",
+                "date" : "14/15/2023",
+                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
+            },
+            "images" : ["img8.jpg", "img7.jpg", "img2.jpg"]
+        },
+        "m" : {
+            "highlight" : {
+                "title" : "Testing Yay",
+                "datagroups" : ["business"]
+            },
+            "detail" : {
+                "title" : "Any variation that fits your variation",
+                "date" : "14/15/2023",
+                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
+            },
+            "images" : ["img9.jpg", "img10.jpg", "img11.jpg"]
+        },
+        "z" : {
+            "highlight" : {
+                "title" : "Testing Yay",
+                "datagroups" : ["business"]
             },
             "detail" : {
                 "title" : "Any variation that fits your variation",

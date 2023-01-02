@@ -40,13 +40,15 @@ class JSON:
     def get_constants(self):
         ''' Returns: Dictionary of project constant values. '''
         return self.data['constants']
+    def get_projects(self):
+        ''' Returns: Dictionary of all projects and values. '''
+        return self.data['projects']
     def get_project(self, project: str):
         ''' Returns: Dictionary of project specific values. '''
         return self.data['projects'][project]
     def get_endpoints(self):
         ''' Returns: List of all project endpoints. '''
-        return list(Projects.data['projects'].keys())
-Projects = JSON()
+        return list(self.data['projects'].keys())
 
 # Set Limits
 limiter = Limiter(
@@ -65,16 +67,20 @@ context = ssl.create_default_context()
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', datagroups=['business', 'coding', 'analysis', 'other'])    
+    Projects = JSON()
+    constants = Projects.get_constants()
+    projects = Projects.get_projects()
+    return render_template('home.html', projects=projects, constants=constants)    
 
 # About Route
 @app.route('/about')
 def about():    
-    return render_template('about.html')  
+    return render_template('about.html', )  
 
 # Project Routes
 @app.route('/project/<endpoint>')
 def project(endpoint: str):
+    Projects = JSON()
     if endpoint in Projects.get_endpoints():
         constants = Projects.get_constants()
         project = Projects.get_project(endpoint)
