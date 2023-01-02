@@ -149,7 +149,7 @@ def contactus():
 
 # Error Handling
 @app.errorhandler(404)
-def not_found(e):
+def not_found(_):
     return redirect(url_for('home'))
 
 # Security Headers
