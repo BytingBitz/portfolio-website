@@ -12,6 +12,13 @@ from os import urandom, getenv
 from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
+from logging.config import dictConfig
+import logging
+import logging.handlers
+
+# Logging test
+# handler = logging.handlers.SysLogHandler(address = '/dev/log')
+# handler.setFormatter(logging.Formatter('flask [%(levelname)s] %(message)s'))
 
 # Get .env variables
 def get_environment(variable: str):
@@ -22,6 +29,7 @@ def get_environment(variable: str):
 # Setup Environment
 csrf = CSRFProtect()
 app = Flask(__name__)
+# app.logger.addHandler(handler)
 app.config['SECRET_KEY'] = urandom(128)
 app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf.init_app(app)
@@ -140,7 +148,8 @@ def contactus():
                     flash('Your message has been emailed!', 'alert-success')
             except RateLimitExceeded:
                 flash('Denied, to many email requests.', 'alert-warning')
-            except Exception:
+            except Exception as error:
+                print(error)
                 flash('Email failed, please try later...', 'alert-danger')       
         else:
             for error in form.errors:
