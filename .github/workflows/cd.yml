@@ -41,12 +41,12 @@ jobs:
             # Start new instance
             docker create \
             -l 'traefik.enable'=true \
-            -l 'traefik.http.routers.135project-secured.entrypoints'=web-secured \
-            -l 'traefik.http.routers.135project-secured.rule'="HOST(\`$URL\`)" \
-            -l 'traefik.http.routers.135project-secured.tls.certresolver'=myhttpchallenge \
-            -l 'traefik.http.routers.135project.entrypoints'=web \
-            -l 'traefik.http.routers.135project.middlewares'='redirect@file' \
-            -l 'traefik.http.routers.135project.rule'="HOST(\`$URL\`)" \
+            -l 'traefik.http.routers.portfolio-secured.entrypoints'=web-secured \
+            -l 'traefik.http.routers.portfolio-secured.rule'="HOST(\`$URL\`)" \
+            -l 'traefik.http.routers.portfolio-secured.tls.certresolver'=myhttpchallenge \
+            -l 'traefik.http.routers.portfolio.entrypoints'=web \
+            -l 'traefik.http.routers.portfolio.middlewares'='redirect@file' \
+            -l 'traefik.http.routers.portfolio.rule'="HOST(\`$URL\`)" \
             --name "$CONTAINER_NAME" \
             --restart always "$IMAGE"
             docker network connect web "$CONTAINER_NAME"
