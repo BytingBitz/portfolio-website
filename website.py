@@ -12,13 +12,6 @@ from os import urandom, getenv
 from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
-from logging.config import dictConfig
-import logging
-import logging.handlers
-
-# Logging test
-# handler = logging.handlers.SysLogHandler(address = '/dev/log')
-# handler.setFormatter(logging.Formatter('flask [%(levelname)s] %(message)s'))
 
 # Get .env variables
 def get_environment(variable: str):
@@ -29,7 +22,6 @@ def get_environment(variable: str):
 # Setup Environment
 csrf = CSRFProtect()
 app = Flask(__name__)
-# app.logger.addHandler(handler)
 app.config['SECRET_KEY'] = urandom(128)
 app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf.init_app(app)
@@ -132,7 +124,7 @@ def send_email(email: Email):
     ''' Purpose: Sends email to specified destination. '''
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
         server.login(email.sender, email.password)
-        msg = MIMEText('From: %s\n\n%s' % (email.email, email.text), charset='utf-8')
+        msg = MIMEText('From: %s\n\n%s' % (email.email, email.text))
         msg['Subject'] = email.subject
         msg['To'] = email.receiver
         server.sendmail(email.sender, email.receiver, msg.as_string())
