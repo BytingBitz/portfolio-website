@@ -139,7 +139,7 @@ def contactus():
                     send_email(Email(form))
                     flash('Your message has been emailed!', 'alert-success')
             except RateLimitExceeded:
-                flash('Denied, to many email requests.', 'alert-warning')
+                flash('Denied, too many email requests.', 'alert-warning')
             except Exception as error:
                 print(error)
                 flash('Email failed, please try later...', 'alert-danger')       
