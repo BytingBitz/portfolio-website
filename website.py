@@ -55,7 +55,7 @@ limiter = Limiter(
     app,
     key_func=get_remote_address,
     default_limits=['500 per day'],
-    storage_uri='memory://',
+    storage_uri='memory://'
 )
 
 # Email Setup
@@ -75,7 +75,7 @@ def home():
 # About Route
 @app.route('/about')
 def about():    
-    return render_template('about.html', )  
+    return render_template('about.html')  
 
 # Project Routes
 @app.route('/project/<endpoint>')
@@ -129,7 +129,7 @@ def send_email(email: Email):
         msg['To'] = email.receiver
         server.sendmail(email.sender, email.receiver, msg.as_string())
 
-@app.route("/contact" , methods=['GET' , 'POST'])
+@app.route("/contact" , methods=['GET', 'POST'])
 def contactus():  
     if request.method == 'POST':
         form = ContactForm()
