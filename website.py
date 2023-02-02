@@ -124,7 +124,7 @@ def send_email(email: Email):
     ''' Purpose: Sends email to specified destination. '''
     with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
         server.login(email.sender, email.password)
-        msg = MIMEText('From: %s\n%s\n%s' % (email.name, email.email, email.text))
+        msg = MIMEText('From: %s\nEmail: %s\n\n%s' % (email.name, email.email, email.text))
         msg['Subject'] = email.subject
         msg['To'] = email.receiver
         server.sendmail(email.sender, email.receiver, msg.as_string())
