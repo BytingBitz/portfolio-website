@@ -5,83 +5,70 @@
         "imagepath" : "images/projects/"
     },
     "projects" : {
-        "t" : {
+        "International-Community" : {
             "highlight" : {
-                "title" : "Testing Yay",
-                "datagroups" : ["business"]
+                "title" : "International Community",
+                "datagroups" : ["business", "other"]
             },
             "detail" : {
-                "title" : "Any variation that fits your variation",
-                "date" : "14/15/2023",
-                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "title" : "Built an international community",
+                "date" : "19/07/2020",
+                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
                 "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
             },
-            "images" : ["img9.jpg", "img10.jpg", "img11.jpg"]
+            "images" : ["img10.png", "img11.png", "img12.png"]
         },
-        "x" : {
+        "image-generation" : {
             "highlight" : {
-                "title" : "Testing Yay",
-                "datagroups" : ["business", "coding"]
+                "title" : "Image Generation",
+                "datagroups" : ["coding", "other"]
             },
             "detail" : {
-                "title" : "Any variation that fits your variation",
-                "date" : "14/15/2023",
-                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "title" : "Generating artwork with code",
+                "date" : "19/07/2020",
+                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
                 "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
             },
-            "images" : ["img8.jpg", "img7.jpg", "img2.jpg"]
+            "images" : ["img5.png", "img6.png", "img7.png", "img8.png", "img9.png"]
         },
-        "b" : {
+        "data-encryption" : {
             "highlight" : {
-                "title" : "Testing Yay",
-                "datagroups" : ["business", "coding"]
+                "title" : "Data Encryption",
+                "datagroups" : ["coding"]
             },
             "detail" : {
-                "title" : "Any variation that fits your variation",
-                "date" : "14/15/2023",
-                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "title" : "Making an encryption algorithm",
+                "date" : "19/07/2020",
+                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
                 "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
             },
-            "images" : ["img8.jpg", "img7.jpg", "img2.jpg"]
+            "images" : ["img4.png"]
         },
-        "w" : {
+        "electrical-engineering" : {
             "highlight" : {
-                "title" : "Testing Yay",
-                "datagroups" : ["business", "coding"]
+                "title" : "Electrical Engineering",
+                "datagroups" : ["other"]
             },
             "detail" : {
-                "title" : "Any variation that fits your variation",
-                "date" : "14/15/2023",
-                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "title" : "Learning electrical engineering",
+                "date" : "19/07/2020",
+                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
                 "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
             },
-            "images" : ["img8.jpg", "img7.jpg", "img2.jpg"]
+            "images" : ["img3.png"]
         },
-        "m" : {
+        "minecraft-artwork" : {
             "highlight" : {
-                "title" : "Testing Yay",
-                "datagroups" : ["business"]
+                "title" : "Minecraft Artwork",
+                "datagroups" : ["other"]
             },
             "detail" : {
-                "title" : "Any variation that fits your variation",
-                "date" : "14/15/2023",
-                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
+                "title" : "Building in Minecraft as a job",
+                "date" : "17/12/2019",
+                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
                 "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
             },
-            "images" : ["img9.jpg", "img10.jpg", "img11.jpg"]
-        },
-        "z" : {
-            "highlight" : {
-                "title" : "Testing Yay",
-                "datagroups" : ["business"]
-            },
-            "detail" : {
-                "title" : "Any variation that fits your variation",
-                "date" : "14/15/2023",
-                "summary" : "Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Proin gravida nibh vel velit auctor Aenean sollicitudin, adipisicing elit sed lorem quis bibendum auctor.",
-                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
-            },
-            "images" : ["img9.jpg", "img10.jpg", "img11.jpg"]
+            "images" : ["img1.png", "img2.png"]
         }
     }
 }
