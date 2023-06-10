@@ -128,26 +128,32 @@ def send_email(email: Email):
         msg['To'] = email.receiver
         server.sendmail(email.sender, email.receiver, msg.as_string())
 
-@app.route("/contact" , methods=['GET', 'POST'])
+@app.route("/contact" , methods=['GET'])
+def contactus_get():
+    return render_template('contact.html')
+
+@app.route("/contact" , methods=['POST'])
 @limiter.limit("2 per day")
-def contactus():  
-    if request.method == 'POST':
-        form = ContactForm()
-        if form.validate_on_submit():
-            try:   
-                send_email(Email(form))
-                flash('Your message has been emailed!', 'alert-success')
-            except RateLimitExceeded:
-                flash('Denied, too many email requests.', 'alert-warning')
-            except Exception as error:
-                print(error)
-                flash('Email failed, please try later...', 'alert-danger')       
-        else:
-            for error in form.errors:
-                flash(form.errors[error][0], 'alert-danger')
-    return render_template('contact.html')       
+def contactus_post():
+    form = ContactForm()
+    if form.validate_on_submit():
+        try:   
+            send_email(Email(form))
+            flash('Your message has been emailed!', 'alert-success')
+        except Exception as error:
+            print(error)
+            flash('Email failed, please try later...', 'alert-danger')       
+    else:
+        for error in form.errors:
+            flash(form.errors[error][0], 'alert-danger')
+    return render_template('contact.html')
 
 # Error Handling
+@app.errorhandler(RateLimitExceeded)
+def ratelimit_handler(_):
+    flash('Denied, too many requests.', 'alert-warning')
+    return render_template('contact.html')
+
 @app.errorhandler(404)
 def not_found(_):
     return redirect(url_for('home'))
