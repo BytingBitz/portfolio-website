@@ -22,14 +22,13 @@ def get_environment(variable: str):
 # Setup Environment
 csrf = CSRFProtect()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = urandom(128)
 app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf.init_app(app)
 try:
     app.secret_key = bytes(get_environment('SECRET'), encoding='utf-8')
 except Exception:
     print('Warning: Found no app.secret_key, using default value...')
-    app.secret_key = b'uahbdauwbdaygwvd'
+    app.secret_key = urandom(128)
 
 # Load Projects JSON
 class JSON:
@@ -130,14 +129,14 @@ def send_email(email: Email):
         server.sendmail(email.sender, email.receiver, msg.as_string())
 
 @app.route("/contact" , methods=['GET', 'POST'])
+@limiter.limit("2 per day")
 def contactus():  
     if request.method == 'POST':
         form = ContactForm()
         if form.validate_on_submit():
-            try:
-                with limiter.limit('2 per day'):    
-                    send_email(Email(form))
-                    flash('Your message has been emailed!', 'alert-success')
+            try:   
+                send_email(Email(form))
+                flash('Your message has been emailed!', 'alert-success')
             except RateLimitExceeded:
                 flash('Denied, too many email requests.', 'alert-warning')
             except Exception as error:

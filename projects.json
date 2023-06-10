@@ -5,29 +5,16 @@
         "imagepath" : "images/projects/"
     },
     "projects" : {
-        "International-Community" : {
-            "highlight" : {
-                "title" : "International Community",
-                "datagroups" : ["business", "other"]
-            },
-            "detail" : {
-                "title" : "Built an international community",
-                "date" : "19/07/2020",
-                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
-                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
-            },
-            "images" : ["img10.png", "img11.png", "img12.png"]
-        },
         "image-generation" : {
             "highlight" : {
                 "title" : "Image Generation",
                 "datagroups" : ["coding", "other"]
             },
             "detail" : {
-                "title" : "Generating artwork with code",
+                "title" : "AI-Powered Artwork Generation",
                 "date" : "19/07/2020",
-                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
-                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
+                "summary" : "Fascinated by AI-generated images, I built an automated image generation pipeline using Hugging Face's stable diffusion. The project allowed me to create stunning artwork with only modest hardware.",
+                "description" : "Employing various Hugging Face stable diffusion models, this project offers an automatable way to generate artistic images through AI at a large scale using everyday hardware. This project allowed me to delve into the potential of AI to unleash creativity in image generation, with some of the images showcased on this page serving as proof of its capabilities. As barriers to image generation regarding overall coherency and size limitations continue to diminish, this project represents a small yet significant step in staying at the forefront of digital innovation. Who knows, it might even assist with visualisations in my future work."
             },
             "images" : ["img5.png", "img6.png", "img7.png", "img8.png", "img9.png"]
         },
@@ -37,25 +24,12 @@
                 "datagroups" : ["coding"]
             },
             "detail" : {
-                "title" : "Making an encryption algorithm",
+                "title" : "Advanced Symmetric Encryption Algorithm",
                 "date" : "19/07/2020",
-                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
-                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
+                "summary" : "To explore complex mathematics with Python, I created a cool symmetric encryption algorithm which generates a unique encrypted result each time, even with the same inputs.",
+                "description" : "Taking on the challenge of delving into more intricate mathematical concepts using Python, I developed a rather cool symmetric encryption algorithm. The algorithm operates similarly to a Caesar Cipher, but with the key difference being that the shift value and sequence change for every character in the input text. What this means is by providing key and text inputs, users receive a unique encrypted result each time, even when using the same key and input text. This project served as a random but very valuable learning experience that pushed the boundaries of my mathematical and Python abilities. This project also really served as an opportunity for me to explore just how complex the world of cryptography is."
             },
             "images" : ["img4.png"]
-        },
-        "electrical-engineering" : {
-            "highlight" : {
-                "title" : "Electrical Engineering",
-                "datagroups" : ["other"]
-            },
-            "detail" : {
-                "title" : "Learning electrical engineering",
-                "date" : "19/07/2020",
-                "summary" : "It is unusual, though professionally creating builds or artwork in Minecraft is in many ways how my journey into business started. It was a hobby where I made many internationally friends that became a profitable job.",
-                "description" : "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks."
-            },
-            "images" : ["img3.png"]
         },
         "minecraft-artwork" : {
             "highlight" : {
