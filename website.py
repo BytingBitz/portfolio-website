@@ -5,13 +5,14 @@ from wtforms import StringField, TextAreaField, EmailField
 from wtforms.validators import InputRequired, Email, length
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
-from flask_limiter import Limiter, RateLimitExceeded
+from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import json
 from os import urandom, getenv
 from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
+from cachetools import TTLCache
 
 # Get .env variables
 def get_environment(variable: str):
@@ -48,6 +49,9 @@ class JSON:
     def get_endpoints(self):
         ''' Returns: List of all project endpoints. '''
         return list(self.data['projects'].keys())
+
+# Define cache
+cache = TTLCache(maxsize=10000, ttl=86400)
 
 # Set Limits
 limiter = Limiter(
@@ -128,32 +132,41 @@ def send_email(email: Email):
         msg['To'] = email.receiver
         server.sendmail(email.sender, email.receiver, msg.as_string())
 
+def cache_check(ip_address):
+    ''' Purpose: Returns if ip address is in cache. '''
+    return True if ip_address in cache else False
+
+def validate_form(form: ContactForm):
+    ''' Purpose: Validate form inputs else raise error. '''
+    if not form.validate_on_submit():
+        for error in form.errors:
+            flash(form.errors[error][0], 'alert-danger')
+        raise ValueError('Invalid form inputs.')
+
 @app.route("/contact" , methods=['GET'])
 def contactus_get():
     return render_template('contact.html')
 
 @app.route("/contact" , methods=['POST'])
-@limiter.limit("2 per day")
-def contactus_post():
-    form = ContactForm()
-    if form.validate_on_submit():
-        try:   
+@limiter.limit('20 per day')
+def contactus_send():
+    ip_address = request.remote_addr
+    if not cache_check(ip_address):
+        cache[ip_address] = 1
+        form = ContactForm()
+        try:
+            validate_form(form)
             send_email(Email(form))
             flash('Your message has been emailed!', 'alert-success')
         except Exception as error:
             print(error)
+            cache.pop(ip_address)
             flash('Email failed, please try later...', 'alert-danger')       
     else:
-        for error in form.errors:
-            flash(form.errors[error][0], 'alert-danger')
+        flash('Already emailed, please try later...', 'alert-danger')
     return render_template('contact.html')
 
 # Error Handling
-@app.errorhandler(RateLimitExceeded)
-def ratelimit_handler(_):
-    flash('Denied, too many requests.', 'alert-warning')
-    return render_template('contact.html')
-
 @app.errorhandler(404)
 def not_found(_):
     return redirect(url_for('home'))
