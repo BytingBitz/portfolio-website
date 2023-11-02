@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   portfolio_website:
-    container_name: portfolio_website
+    container_name: portfolio-website
     build: 
       context: .
     deploy:
