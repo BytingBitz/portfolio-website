@@ -1,4 +1,4 @@
-FROM python:3.10-slim-buster
+FROM python:3.10.2-slim-buster
 
 COPY . /srv/flask_app
 WORKDIR /srv/flask_app

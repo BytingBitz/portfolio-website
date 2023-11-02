@@ -28,7 +28,7 @@ csrf.init_app(app)
 try:
     app.secret_key = bytes(get_environment('SECRET'), encoding='utf-8')
 except Exception:
-    print('Warning: Found no app.secret_key, using default value...')
+    print('Warning: Found no app.secret_key, using random value...')
     app.secret_key = urandom(128)
 
 # Load Projects JSON
@@ -177,7 +177,6 @@ def add_header(response):
     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
     response.headers['Content-Security-Policy'] = "default-src 'self';font-src 'self' fonts.gstatic.com;style-src 'self' fonts.googleapis.com;object-src 'none';img-src 'self' data: https://www.w3.org/2000/svg;require-trusted-types-for 'script'"
     response.headers['X-Content-Type-Options'] = 'nosniff'
-    response.headers['X-XSS-Protection'] = '1; mode=block'
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     return response
 
