@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  portfolio_website:
+  portfolio:
     container_name: portfolio
     build: 
       context: .
@@ -16,13 +16,13 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portfolio_website.rule=Host(`amalfitano.me`)"
-      - "traefik.http.routers.portfolio_website.entrypoints=web"
-      - "traefik.http.routers.portfolio_website.middlewares=redirect@file"
-      - "traefik.http.routers.portfolio_website-secured.rule=Host(`amalfitano.me`)"
-      - "traefik.http.routers.portfolio_website-secured.entrypoints=web-secured"
-      - "traefik.http.routers.portfolio_website-secured.tls.certresolver=myhttpchallenge"
-      - "traefik.http.services.portfolio_website.loadbalancer.server.port=80"
+      - "traefik.http.routers.portfolio.rule=Host(`amalfitano.me`)"
+      - "traefik.http.routers.portfolio.entrypoints=web"
+      - "traefik.http.routers.portfolio.middlewares=redirect@file"
+      - "traefik.http.routers.portfolio-secured.rule=Host(`amalfitano.me`)"
+      - "traefik.http.routers.portfolio-secured.entrypoints=web-secured"
+      - "traefik.http.routers.portfolio-secured.tls.certresolver=myhttpchallenge"
+      - "traefik.http.services.portfolio.loadbalancer.server.port=80"
 
 networks:
   web:
