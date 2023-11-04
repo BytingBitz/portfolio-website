@@ -8,7 +8,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import json
-from os import urandom, getenv
+from os import urandom, environ
 from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
@@ -17,8 +17,7 @@ from cachetools import TTLCache
 # Get .env variables
 def get_environment(variable: str):
 	''' Returns: Loaded .env file variable. '''
-	load_dotenv() 
-	return getenv(variable)
+	return environ[variable]
 
 # Setup Environment
 csrf = CSRFProtect()
@@ -180,6 +179,6 @@ def add_header(response):
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     return response
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
+    load_dotenv()   
     app.run(debug=True)
-   

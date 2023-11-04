@@ -3,15 +3,11 @@ version: '3.8'
 services:
   portfolio:
     container_name: portfolio
-    build: 
-      context: .
-    deploy:
-      restart_policy:
-        condition: on-failure
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 750M
+    build: .
+    env_file: .env
+    restart: on-failure
+    cpus: '0.5'
+    mem_limit: 750M
     networks:
       - web
     labels:
