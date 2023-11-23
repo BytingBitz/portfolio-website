@@ -3,7 +3,9 @@ version: '3.8'
 services:
   portfolio:
     container_name: portfolio
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-flask
     env_file: .env
     restart: on-failure
     cpus: '0.5'
@@ -22,7 +24,9 @@ services:
 
   redis:
     container_name: redis
-    image: redis:alpine
+    build:
+      context: .
+      dockerfile: Dockerfile-redis
     restart: on-failure
     cpus: '0.5'
     mem_limit: 750M
@@ -31,8 +35,6 @@ services:
     command: redis-server --appendonly yes
     volumes:
       - redis-data:/data
-    sysctls:
-      - vm.overcommit_memory=1
 
 volumes:
   redis-data:

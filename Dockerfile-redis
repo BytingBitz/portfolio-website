@@ -1,0 +1,9 @@
+FROM redis:alpine
+
+COPY redis-start.sh /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/redis-start.sh
+
+ENTRYPOINT ["redis-start.sh"]
+
+CMD ["redis-server"]
