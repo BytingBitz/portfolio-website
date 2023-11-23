@@ -143,7 +143,7 @@ def contactus_get():
     return render_template('contact.html')
 
 @app.route("/contact" , methods=['POST'])
-@limiter.limit('20 per day')
+@limiter.limit('10 per day')
 def contactus_send():
     ip_address = request.remote_addr
     if not cache.exists(ip_address):

@@ -31,4 +31,4 @@ RUN chown -R user:user /srv/flask_app
 
 USER user
 
-CMD ["./start-flask.sh"]
+CMD ["./start.sh"]
