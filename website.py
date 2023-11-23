@@ -12,7 +12,7 @@ from os import urandom, environ
 from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
-from cachetools import TTLCache
+import redis
 
 # Get .env variables
 def get_environment(variable: str):
@@ -50,7 +50,7 @@ class JSON:
         return list(self.data['projects'].keys())
 
 # Define cache
-cache = TTLCache(maxsize=10000, ttl=86400)
+cache = redis.Redis(host='redis', port=6379, db=0)
 
 # Set Limits
 limiter = Limiter(
@@ -131,10 +131,6 @@ def send_email(email: Email):
         msg['To'] = email.receiver
         server.sendmail(email.sender, email.receiver, msg.as_string())
 
-def cache_check(ip_address):
-    ''' Purpose: Returns if ip address is in cache. '''
-    return True if ip_address in cache else False
-
 def validate_form(form: ContactForm):
     ''' Purpose: Validate form inputs else raise error. '''
     if not form.validate_on_submit():
@@ -150,8 +146,8 @@ def contactus_get():
 @limiter.limit('20 per day')
 def contactus_send():
     ip_address = request.remote_addr
-    if not cache_check(ip_address):
-        cache[ip_address] = 1
+    if not cache.exists(ip_address):
+        cache.set(ip_address, 1, ex=86400)
         form = ContactForm()
         try:
             validate_form(form)
@@ -159,7 +155,7 @@ def contactus_send():
             flash('Your message has been emailed!', 'alert-success')
         except Exception as error:
             print(error)
-            cache.pop(ip_address)
+            cache.delete(ip_address)
             flash('Email failed, please try later...', 'alert-danger')       
     else:
         flash('Already emailed, please try later...', 'alert-danger')
