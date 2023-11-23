@@ -22,7 +22,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /var/lib/nginx/body /var/log/nginx /var/lib/nginx/tmp /usr/share/nginx/html \
     && chown -R user:user /var/lib/nginx /var/log/nginx /usr/share/nginx/html /srv/flask_app /tmp
 
-RUN chmod +x ./start-flask.sh \
+RUN chmod +x ./start.sh \
     && chown -R user:user /srv/flask_app
 
 EXPOSE 80
