@@ -25,7 +25,8 @@ def get_environment(variable: str):
 csrf = CSRFProtect()
 app = Flask(__name__)
 app.config['WTF_CSRF_TIME_LIMIT'] = None
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
+if __name__ != "__main__":
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2, x_host=1)
 csrf.init_app(app)
 load_dotenv() 
 try:
