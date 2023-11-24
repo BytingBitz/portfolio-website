@@ -189,10 +189,6 @@ def add_header(response):
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     return response
 
-def start_session():
-    if __name__ == "__main__":
-        print('WARNING: Beginning debug Flask session...')  
-        app.run(debug=True)
-    else:
-        print('INFO: Running in production environment...')
-start_session()
+if __name__ == "__main__":
+    print('WARNING: Beginning debug Flask session...')  
+    app.run(debug=True)
