@@ -55,11 +55,7 @@ def initialise_caching(production: bool = True):
     global cache, limiter
     if production:
         storage = 'redis://redis:6379'
-        try:
-            cache = redis.Redis(host='redis', port=6379, db=0)
-            cache.ping()
-        except redis.ConnectionError:
-            raise RuntimeError("Failed to connect to Redis in production environment...")
+        cache = redis.Redis(host='redis', port=6379, db=0)
     else:
         storage = 'memory://'
         cache = fakeredis.FakeStrictRedis()
