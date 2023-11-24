@@ -430,7 +430,7 @@ h6 {
   width: 150px;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-primary:disabled, .btn-primary:disabled:hover, .btn-primary:disabled:focus, .btn-primary:disabled:active, .btn-primary:disabled.active {
   background: #fd4337;
   background: var(--colour-dark);
   border-color: #fd4337;
@@ -1220,4 +1220,8 @@ ul.pattern .color6 {
 
 .carousel-slides {
   display: none
+}
+
+#contactFormSubmit {
+  min-width: 150px;
 }

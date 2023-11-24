@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 import smtplib, ssl
 from email.mime.text import MIMEText
 import redis
+import fakeredis
 
 # Get .env variables
 def get_environment(variable: str):
@@ -24,10 +25,11 @@ csrf = CSRFProtect()
 app = Flask(__name__)
 app.config['WTF_CSRF_TIME_LIMIT'] = None
 csrf.init_app(app)
+load_dotenv() 
 try:
     app.secret_key = bytes(get_environment('SECRET'), encoding='utf-8')
 except Exception:
-    print('Warning: Found no app.secret_key, using random value...')
+    print('INFO: Found no app.secret_key, using random value...')
     app.secret_key = urandom(128)
 
 # Load Projects JSON
@@ -49,16 +51,28 @@ class JSON:
         ''' Returns: List of all project endpoints. '''
         return list(self.data['projects'].keys())
 
-# Define cache
-cache = redis.Redis(host='redis', port=6379, db=0)
-
-# Set Limits
-limiter = Limiter(
-    app,
-    key_func=get_remote_address,
-    default_limits=['500 per day'],
-    storage_uri='memory://'
-)
+def initialise_caching(production: bool = True):
+    global cache, limiter
+    if production:
+        storage = 'redis://redis:6379'
+        try:
+            cache = redis.Redis(host='redis', port=6379, db=0)
+            cache.ping()
+        except redis.ConnectionError:
+            raise RuntimeError("Failed to connect to Redis in production environment...")
+    else:
+        storage = 'memory://'
+        cache = fakeredis.FakeStrictRedis()
+    limiter = Limiter(
+        app,
+        key_func=get_remote_address,
+        default_limits=['500 per day'],
+        storage_uri=storage
+    )
+if __name__ != "__main__":
+    initialise_caching(production=True)
+else:
+    initialise_caching(production=False)
 
 # Email Setup
 port = 465
@@ -156,9 +170,9 @@ def contactus_send():
         except Exception as error:
             print(error)
             cache.delete(ip_address)
-            flash('Email failed, please try later...', 'alert-danger')       
+            flash('Email failed to send, please try later...', 'alert-danger')       
     else:
-        flash('Already emailed, please try later...', 'alert-danger')
+        flash('You have already emailed me, try again later if needed...', 'alert-warning')
     return render_template('contact.html')
 
 # Error Handling
@@ -175,6 +189,10 @@ def add_header(response):
     response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     return response
 
-if __name__ == "__main__":
-    load_dotenv()   
-    app.run(debug=True)
+def start_session():
+    if __name__ == "__main__":
+        print('WARNING: Beginning debug Flask session...')  
+        app.run(debug=True)
+    else:
+        print('INFO: Running in production environment...')
+start_session()

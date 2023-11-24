@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 mt-5">
-                    <form action="/contact" id="myForm" method="POST">
+                    <form action="/contact" id="contactForm" method="POST">
                     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                     {% for category, message in messages %}
@@ -69,8 +69,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <input type="submit" id="contactFormsubmit" name="send" class="submitBnt btn btn-primary rounded alert-dismissible"
-                                    value="Send message" onclick="contactValidation(); dismissAlert()"/>
+                                <input type="submit" id="contactFormSubmit" name="send" class="submitBnt btn btn-primary rounded alert-dismissible" value="Send message"/>
                             </div>
                         </div>
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />

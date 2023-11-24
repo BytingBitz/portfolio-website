@@ -172,42 +172,45 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
 }
 
-const contactValidation = () => {
-    // Get input values
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var subject = $("#subject").val();
-    var message = $("#comments").val();
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        var submitButton = document.getElementById('contactFormSubmit');
+        submitButton.blur();
+        if (!contactValidation(event)) {
+            event.preventDefault(); // Prevent form submission if validation fails
+            return false;
+        }
+        submitButton.disabled = true;
+        submitButton.value = 'Sending...';
+    });
+});
 
-    // Validate name
+const contactValidation = (event) => {
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var subject = document.getElementById('subject').value;
+    var message = document.getElementById('comments').value;
     if (name.length === 0 || name.length > 60) {
-        e.preventDefault();
-        $("#error-msg").text("Name is required and must not exceed 60 characters.");
+        event.preventDefault();
+        document.getElementById('error-msg').innerText = "Name is required and must not exceed 60 characters.";
         return false;
     }
-
-    // Validate email
     var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (email.length === 0 || email.length > 60 || !emailRegex.test(email)) {
-        e.preventDefault();
-        $("#error-msg").text("Email is required, must be a valid email address and must not exceed 60 characters.");
+        event.preventDefault();
+        document.getElementById('error-msg').innerText = "Email is required, must be a valid email address and must not exceed 60 characters.";
         return false;
     }
-
-    // Validate subject
     if (subject.length === 0 || subject.length > 60) {
-        e.preventDefault();
-        $("#error-msg").text("Subject is required and must not exceed 60 characters.");
+        event.preventDefault();
+        document.getElementById('error-msg').innerText = "Subject is required and must not exceed 60 characters.";
         return false;
     }
-
-    // Validate message
     if (message.length === 0 || message.length > 1000) {
-        e.preventDefault();
-        $("#error-msg").text("Message is required and must not exceed 1000 characters.");
+        event.preventDefault();
+        document.getElementById('error-msg').innerText = "Message is required and must not exceed 1000 characters.";
         return false;
     }
-
-    // If all validations pass
-    $("#error-msg").text("");
-}
+    document.getElementById('error-msg').innerText = "";
+    return true;
+};
