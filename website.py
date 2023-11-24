@@ -25,6 +25,7 @@ def get_environment(variable: str):
 csrf = CSRFProtect()
 app = Flask(__name__)
 app.config['WTF_CSRF_TIME_LIMIT'] = None
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
 csrf.init_app(app)
 load_dotenv() 
 try:
@@ -32,7 +33,6 @@ try:
 except Exception:
     print('INFO: Found no app.secret_key, using random value...')
     app.secret_key = urandom(128)
-app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
 
 # Load Projects JSON
 class JSON:
