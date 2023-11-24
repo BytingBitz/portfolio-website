@@ -69,10 +69,10 @@ def initialise_caching(production: bool = True):
         default_limits=['500 per day'],
         storage_uri=storage
     )
-if __name__ != "__main__":
-    initialise_caching(production=True)
-else:
+if __name__ == "__main__":
     initialise_caching(production=False)
+else:
+    initialise_caching(production=True)
 
 # Email Setup
 port = 465
