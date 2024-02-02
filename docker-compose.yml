@@ -5,7 +5,7 @@ services:
   redis:
     container_name: redis
     image: redis:alpine
-    restart: on-failure
+    restart: always
     cpus: '0.5'
     mem_limit: 1000M
     networks:
