@@ -6,8 +6,11 @@ services:
     container_name: redis
     image: redis:alpine
     restart: always
-    cpus: '0.5'
-    mem_limit: 1000M
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 750M
     networks:
       - redis
     command: redis-server --appendonly yes
@@ -24,8 +27,11 @@ services:
     build: .
     env_file: .env
     restart: on-failure
-    cpus: '0.5'
-    mem_limit: 750M
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 750M
     networks:
       - web
       - redis
